@@ -15,12 +15,24 @@ android {
 
     buildTypes {
         debug {
+            applicationIdSuffix '.debug'
+
             testCoverageEnabled true
         }
 
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+        mock {
+            applicationId 'com.asadmshah.runpainter.mock'
+        }
+
+        prod {
+            applicationId 'com.asadmshah.runpainter'
         }
     }
 
