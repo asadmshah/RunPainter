@@ -21,3 +21,64 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+subprojects {
+    plugins.apply('checkstyle')
+    plugins.apply('pmd')
+    plugins.apply('findbugs')
+
+    task checkstyle(type: Checkstyle) {
+        configFile = rootProject.file('quality/checkstyle.xml')
+        source = 'src'
+        include '**/*.java'
+        exclude '**/gen/**'
+        classpath = files()
+
+        ignoreFailures = false
+        showViolations = true
+    }
+
+    task pmd(type: Pmd) {
+        ruleSetFiles = rootProject.files('quality/pmd.xml')
+        ruleSets = []
+
+        source = 'src'
+        include '**/*.java'
+        exclude '**/gen/**'
+
+        reports {
+            xml.enabled = false
+            html.enabled = true
+        }
+
+        ignoreFailures = false
+    }
+
+    task findbugs(type: FindBugs) {
+        classes = files("${project.projectDir}/build/intermediates/classes")
+        source = fileTree('src/main/java')
+        classpath = files()
+
+        excludeFilter = rootProject.file('quality/findbugs-filter.xml')
+
+        reports {
+            xml.enabled = false
+            html.enabled = true
+        }
+
+        ignoreFailures = false
+        effort = 'max'
+        reportLevel = 'low'
+    }
+
+    afterEvaluate {
+        tasks.findByName('pmd').dependsOn('assemble')
+        tasks.findByName('findbugs').dependsOn('assemble')
+
+        def checkTask = tasks.findByName('check')
+
+        checkTask.dependsOn('pmd')
+        checkTask.dependsOn('findbugs')
+        checkTask.dependsOn('checkstyle')
+    }
+}

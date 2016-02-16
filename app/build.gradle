@@ -17,6 +17,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+        warningsAsErrors true
+        abortOnError true
+        xmlReport false
+        htmlReport true
+        checkReleaseBuilds false
+
+        lintConfig rootProject.file('quality/lint.xml')
+        htmlOutput file("$project.buildDir/reports/lint/lint-result.html")
+    }
 }
 
 dependencies {
