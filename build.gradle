@@ -93,3 +93,9 @@ ext {
     versionCode = 1
     versionName = "0.1.0"
 }
+
+ext.libs = [
+        appcompat:      'com.android.support:appcompat-v7:23.1.1',
+        junit:          'junit:junit:4.12',
+
+]
