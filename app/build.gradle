@@ -2,15 +2,21 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.github.kt3k.coveralls'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.asadmshah.runpainter"
-        minSdkVersion 21
-        targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+    }
+
+    compileOptions {
+        sourceCompatibility rootProject.ext.javaVersion
+        targetCompatibility rootProject.ext.javaVersion
     }
 
     buildTypes {
@@ -34,6 +40,10 @@ android {
         prod {
             applicationId 'com.asadmshah.runpainter'
         }
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
     }
 
     lintOptions {
