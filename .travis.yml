@@ -16,7 +16,10 @@ android:
 
 script:
   - ./gradlew app:check
-  - ./gradlew app:testDebugUnitTest
+  - ./gradlew app:test
+
+after_success:
+  - ./gradlew app:createDebugCoverageReport app:coveralls
 
 cache:
   directories:
