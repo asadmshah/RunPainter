@@ -12,6 +12,12 @@ android {
         versionName rootProject.ext.versionName
 
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+
+        manifestPlaceholders = [
+                databaseProviderAuthority: rootProject.ext.databaseProviderAuthority,
+        ]
+
+        buildConfigField "String", "DATABASE_PROVIDER_AUTHORITY", "\"rootProject.ext.databaseProviderAuthority\""
     }
 
     buildTypes {
@@ -56,8 +62,15 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile     libs.appcompat
+    compile     libs.supportAnnotations
 
     testCompile libs.junit
+    testCompile libs.truth
+
+    androidTestCompile libs.supportAnnotations
+    androidTestCompile libs.junit
+    androidTestCompile libs.truth
+    androidTestCompile libs.testRules
 }
 
 coveralls {
