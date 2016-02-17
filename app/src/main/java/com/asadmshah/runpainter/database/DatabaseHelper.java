@@ -24,6 +24,7 @@ final class DatabaseHelper extends SQLiteOpenHelper {
         db.setForeignKeyConstraintsEnabled(true);
     }
 
+    @SuppressWarnings("PMD.AvoidDuplicateLiterals")
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + Runs.TABLE_NAME + " ("
