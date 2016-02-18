@@ -1,9 +1,13 @@
 language: android
 
 sudo: false
+
 jdk: oraclejdk8
 
 env:
+  global:
+    - ADB_INSTALL_TIMEOUT=10
+
   matrix:
     - ANDROID_TARGET=android-21 ANDROID_ABI=armeabi-v7a
 
@@ -26,16 +30,18 @@ before_script:
   - adb shell input keyevent 82 &
 
 script:
-  - ./gradlew app:check
-  - ./gradlew app:connectedCheck
+  - ./gradlew clean
+  - ./gradlew assemble -PdisablePreDex -q
+  - ./gradlew check
+  - ./gradlew connectedCheck
 
 after_success:
   - ./gradlew app:coveralls
 
-before_cache:
-  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
-
 cache:
   directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
+    - $HOME/.gradle/caches/2.10
+    - $HOME/.gradle/caches/jars-1
+    - $HOME/.gradle/daemon
+    - $HOME/.gradle/native
+    - $HOME/.gradle/wrapper
