@@ -37,14 +37,14 @@ public class DatabaseProviderTest extends ProviderTestCase2<DatabaseProvider> {
         }
 
         try {
-            cr.insert(Contracts.Points.buildUri(), cv);
+            cr.insert(Contracts.RoutePoints.buildUri(), cv);
             Assert.fail();
         } catch (IllegalUriException ignore) {
 
         }
 
         try {
-            cr.insert(Contracts.Points.buildUri(1), cv);
+            cr.insert(Contracts.RoutePoints.buildUri(1), cv);
             Assert.fail();
         } catch (IllegalUriException ignore) {
 
@@ -82,15 +82,15 @@ public class DatabaseProviderTest extends ProviderTestCase2<DatabaseProvider> {
         cursor.close();
     }
 
-    public void testQueryPoints() {
+    public void testQueryRoutePoints() {
         insertRun(1);
         insertRun(2);
-        insertPoints(1, 2);
-        insertPoints(2, 2);
+        insertRoutePoints(1, 2);
+        insertRoutePoints(2, 2);
 
         Cursor cursor;
 
-        cursor = getMockContentResolver().query(Contracts.Points.buildUri(1), new String[]{Contracts.Points.RUN_ID}, null, null, null);
+        cursor = getMockContentResolver().query(Contracts.RoutePoints.buildUri(1), new String[]{Contracts.RoutePoints.RUN_ID}, null, null, null);
         assertThat(cursor).isNotNull();
         assertThat(cursor.getCount()).isEqualTo(2);
         assertThat(cursor.moveToNext()).isTrue();
@@ -99,7 +99,7 @@ public class DatabaseProviderTest extends ProviderTestCase2<DatabaseProvider> {
         assertThat(cursor.getInt(0)).isEqualTo(1);
         cursor.close();
 
-        cursor = getMockContentResolver().query(Contracts.Points.buildUri(2), new String[]{Contracts.Points.RUN_ID}, null, null, null);
+        cursor = getMockContentResolver().query(Contracts.RoutePoints.buildUri(2), new String[]{Contracts.RoutePoints.RUN_ID}, null, null, null);
         assertThat(cursor).isNotNull();
         assertThat(cursor.getCount()).isEqualTo(2);
         assertThat(cursor.moveToNext()).isTrue();
@@ -113,7 +113,7 @@ public class DatabaseProviderTest extends ProviderTestCase2<DatabaseProvider> {
         ContentResolver cr = getMockContentResolver();
 
         try {
-            cr.query(Contracts.Points.buildUri(), null, null, null, null, null);
+            cr.query(Contracts.RoutePoints.buildUri(), null, null, null, null, null);
             Assert.fail();
         } catch (IllegalUriException ignore) {
 
@@ -123,13 +123,13 @@ public class DatabaseProviderTest extends ProviderTestCase2<DatabaseProvider> {
     public void testDeleteRun() {
         insertRun(1);
         insertRun(2);
-        insertPoints(1, 2);
-        insertPoints(2, 2);
+        insertRoutePoints(1, 2);
+        insertRoutePoints(2, 2);
 
         int deletedRows = getMockContentResolver().delete(Contracts.Runs.buildUri(2), null, null);
         assertThat(deletedRows).isEqualTo(1);
 
-        Cursor cursor = getMockContentResolver().query(Contracts.Points.buildUri(2), null, null, null, null);
+        Cursor cursor = getMockContentResolver().query(Contracts.RoutePoints.buildUri(2), null, null, null, null);
         assertThat(cursor).isNotNull();
         assertThat(cursor.moveToNext()).isFalse();
         cursor.close();
@@ -139,21 +139,21 @@ public class DatabaseProviderTest extends ProviderTestCase2<DatabaseProvider> {
         ContentResolver cr = getMockContentResolver();
 
         try {
-            cr.delete(Contracts.Points.buildUri(), null, null);
+            cr.delete(Contracts.RoutePoints.buildUri(), null, null);
             Assert.fail();
         } catch (IllegalUriException ignore) {
 
         }
 
         try {
-            cr.delete(Contracts.Points.buildUri(), null, null);
+            cr.delete(Contracts.RoutePoints.buildUri(), null, null);
             Assert.fail();
         } catch (IllegalUriException ignore) {
 
         }
 
         try {
-            cr.delete(Contracts.Points.buildUri(1), null, null);
+            cr.delete(Contracts.RoutePoints.buildUri(1), null, null);
             Assert.fail();
         } catch (IllegalUriException ignore) {
 
@@ -188,23 +188,23 @@ public class DatabaseProviderTest extends ProviderTestCase2<DatabaseProvider> {
         }
 
         try {
-            cr.update(Contracts.Points.buildUri(), cv, null, null);
+            cr.update(Contracts.RoutePoints.buildUri(), cv, null, null);
             Assert.fail();
         } catch (IllegalUriException ignore) {
 
         }
 
         try {
-            cr.update(Contracts.Points.buildUri(1), cv, null, null);
+            cr.update(Contracts.RoutePoints.buildUri(1), cv, null, null);
             Assert.fail();
         } catch (IllegalUriException ignore) {
 
         }
     }
 
-    public void testBulkInsertPoints() {
+    public void testBulkInsertRoutePoints() {
         insertRun(1);
-        int insertedRows = insertPoints(1, 4);
+        int insertedRows = insertRoutePoints(1, 4);
 
         assertThat(insertedRows).isEqualTo(4);
     }
@@ -228,7 +228,7 @@ public class DatabaseProviderTest extends ProviderTestCase2<DatabaseProvider> {
         }
 
         try {
-            cr.bulkInsert(Contracts.Points.CONTENT_URI, cv);
+            cr.bulkInsert(Contracts.RoutePoints.CONTENT_URI, cv);
             Assert.fail();
         } catch (IllegalUriException ignore) {
 
@@ -249,20 +249,20 @@ public class DatabaseProviderTest extends ProviderTestCase2<DatabaseProvider> {
         return getMockContentResolver().insert(Contracts.Runs.buildUri(), cv);
     }
 
-    private int insertPoints(long runId, int n) {
+    private int insertRoutePoints(long runId, int n) {
         ContentValues[] cvs = new ContentValues[n];
         for (int i = 0; i < n; i++) {
             ContentValues cv = new ContentValues();
-            cv.put(Contracts.Points.DATETIME, i+1);
-            cv.put(Contracts.Points.LATITUDE, i+1);
-            cv.put(Contracts.Points.LONGITUDE, i+1);
-            cv.put(Contracts.Points.ALTITUDE, i+1);
-            cv.put(Contracts.Points.ACCURACY, i+1);
-            cv.put(Contracts.Points.BEARING, i+1);
-            cv.put(Contracts.Points.SPEED, i+1);
+            cv.put(Contracts.RoutePoints.DATETIME, i+1);
+            cv.put(Contracts.RoutePoints.LATITUDE, i+1);
+            cv.put(Contracts.RoutePoints.LONGITUDE, i+1);
+            cv.put(Contracts.RoutePoints.ALTITUDE, i+1);
+            cv.put(Contracts.RoutePoints.ACCURACY, i+1);
+            cv.put(Contracts.RoutePoints.BEARING, i+1);
+            cv.put(Contracts.RoutePoints.SPEED, i+1);
             cvs[i] = cv;
         }
-        return getMockContentResolver().bulkInsert(Contracts.Points.buildUri(runId), cvs);
+        return getMockContentResolver().bulkInsert(Contracts.RoutePoints.buildUri(runId), cvs);
     }
 
 }

@@ -11,14 +11,14 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.asadmshah.runpainter.database.Contracts.Points;
+import com.asadmshah.runpainter.database.Contracts.RoutePoints;
 import com.asadmshah.runpainter.database.Contracts.Runs;
 
 public class DatabaseProvider extends ContentProvider {
 
     private static final int LIST_RUNS = 10;
     private static final int ITEM_RUNS = 11;
-    private static final int LIST_POINTS = 20;
+    private static final int LIST_ROUTE_POINTS = 20;
 
     private static final UriMatcher URI_MATCHER = new UriMatcher(UriMatcher.NO_MATCH);
 
@@ -27,7 +27,7 @@ public class DatabaseProvider extends ContentProvider {
     static {
         URI_MATCHER.addURI(Contracts.AUTHORITY, Runs.PATH, LIST_RUNS);
         URI_MATCHER.addURI(Contracts.AUTHORITY, Runs.PATH + "/#", ITEM_RUNS);
-        URI_MATCHER.addURI(Contracts.AUTHORITY, Points.PATH + "/#", LIST_POINTS);
+        URI_MATCHER.addURI(Contracts.AUTHORITY, RoutePoints.PATH + "/#", LIST_ROUTE_POINTS);
     }
 
     @Override
@@ -44,8 +44,8 @@ public class DatabaseProvider extends ContentProvider {
                 return Runs.CONTENT_TYPE;
             case ITEM_RUNS:
                 return Runs.CONTENT_ITEM_TYPE;
-            case LIST_POINTS:
-                return Points.CONTENT_TYPE;
+            case LIST_ROUTE_POINTS:
+                return RoutePoints.CONTENT_TYPE;
             default:
                 throw new IllegalUriException(uri);
         }
@@ -69,9 +69,9 @@ public class DatabaseProvider extends ContentProvider {
                 where = buildWhere(Runs.ID);
                 whereArgs = buildWhereArgs(uri);
                 break;
-            case LIST_POINTS:
-                table = Points.TABLE_NAME;
-                where = buildWhere(Points.RUN_ID);
+            case LIST_ROUTE_POINTS:
+                table = RoutePoints.TABLE_NAME;
+                where = buildWhere(RoutePoints.RUN_ID);
                 whereArgs = buildWhereArgs(uri);
                 break;
             default:
@@ -135,13 +135,13 @@ public class DatabaseProvider extends ContentProvider {
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
         int rowsInserted = 0;
 
-        if (URI_MATCHER.match(uri) == LIST_POINTS) {
+        if (URI_MATCHER.match(uri) == LIST_ROUTE_POINTS) {
             db.beginTransaction();
             long runId = ContentUris.parseId(uri);
             try {
                 for (ContentValues cv : values) {
-                    cv.put(Points.RUN_ID, runId);
-                    if (db.insert(Points.TABLE_NAME, null, cv) > 0) {
+                    cv.put(RoutePoints.RUN_ID, runId);
+                    if (db.insert(RoutePoints.TABLE_NAME, null, cv) > 0) {
                         rowsInserted++;
                     }
                 }

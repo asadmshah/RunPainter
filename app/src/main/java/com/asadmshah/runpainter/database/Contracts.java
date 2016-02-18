@@ -51,9 +51,9 @@ final class Contracts {
         }
     }
 
-    static final class Points {
+    static final class RoutePoints {
 
-        static final String TABLE_NAME = Points.class.getSimpleName();
+        static final String TABLE_NAME = RoutePoints.class.getSimpleName();
 
         static final String ID = "_id";
         static final String RUN_ID = "run_id";
@@ -70,7 +70,7 @@ final class Contracts {
 
         static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_URI, PATH);
 
-        private Points() {
+        private RoutePoints() {
 
         }
 
