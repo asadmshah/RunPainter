@@ -10,6 +10,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:1.5.0'
         classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.6.3'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
     }
 }
 
@@ -97,6 +98,8 @@ ext {
 ext.libs = [
         appcompat:          'com.android.support:appcompat-v7:23.1.1',
         supportAnnotations: 'com.android.support:support-annotations:23.1.1',
+        autoparcel:         'com.github.frankiesardo:auto-parcel:0.3.1',
+        autoparcelProcessor:'com.github.frankiesardo:auto-parcel-processor:0.3.1',
         junit:              'junit:junit:4.12',
         truth:              'com.google.truth:truth:0.28',
         testRules:          'com.android.support.test:rules:0.4.1',
