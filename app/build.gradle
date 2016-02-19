@@ -58,6 +58,11 @@ android {
         lintConfig rootProject.file('quality/lint.xml')
         htmlOutput file("$project.buildDir/reports/lint/lint-result.html")
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
 }
 
 dependencies {
@@ -65,7 +70,7 @@ dependencies {
     compile     libs.appcompat
     compile     libs.supportAnnotations
     compile     libs.autoparcel
-    compile     libs.autoparcelProcessor
+    apt         libs.autoparcelProcessor
 
     testCompile libs.junit
     testCompile libs.truth
