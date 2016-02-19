@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.github.kt3k.coveralls'
 apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'jacoco-android'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -50,7 +50,7 @@ android {
 
     lintOptions {
         warningsAsErrors true
-        abortOnError true
+        abortOnError false
         xmlReport false
         htmlReport true
         checkReleaseBuilds false
@@ -83,8 +83,4 @@ dependencies {
     androidTestCompile libs.junit
     androidTestCompile libs.truth
     androidTestCompile libs.testRules
-}
-
-coveralls {
-    jacocoReportPath = "${project.buildDir}/reports/coverage/mock/debug/report.xml"
 }

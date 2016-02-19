@@ -9,8 +9,8 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:1.5.0'
-        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.6.3'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        classpath 'com.dicedmelon.gradle:jacoco-android:0.1.1'
     }
 }
 
@@ -30,21 +30,25 @@ subprojects {
     plugins.apply('findbugs')
 
     task checkstyle(type: Checkstyle) {
-        configFile = rootProject.file('quality/checkstyle.xml')
-        source = 'src'
+        group 'verification'
+
+        configFile rootProject.file('quality/checkstyle.xml')
+        source 'src'
         include '**/*.java'
         exclude '**/gen/**'
+
         classpath = files()
 
-        ignoreFailures = false
-        showViolations = true
+        ignoreFailures = true
     }
 
     task pmd(type: Pmd) {
+        group 'verification'
+
         ruleSetFiles = rootProject.files('quality/pmd.xml')
         ruleSets = []
 
-        source = 'src'
+        source 'src'
         include '**/*.java'
         exclude '**/gen/**'
 
@@ -53,12 +57,14 @@ subprojects {
             html.enabled = true
         }
 
-        ignoreFailures = false
+        ignoreFailures = true
     }
 
     task findbugs(type: FindBugs) {
+        group 'verification'
+
         classes = files("${project.projectDir}/build/intermediates/classes")
-        source = fileTree('src/main/java')
+        source fileTree('src/main/java')
         classpath = files()
 
         excludeFilter = rootProject.file('quality/findbugs-filter.xml')
@@ -68,7 +74,7 @@ subprojects {
             html.enabled = true
         }
 
-        ignoreFailures = false
+        ignoreFailures = true
         effort = 'max'
         reportLevel = 'low'
     }
