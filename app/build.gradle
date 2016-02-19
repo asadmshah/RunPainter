@@ -72,6 +72,9 @@ dependencies {
     compile     libs.supportDesign
     compile     libs.autoparcel
     apt         libs.autoparcelProcessor
+    compile     libs.dagger
+    apt         libs.daggerCompiler
+    provided    libs.jsr250
 
     testCompile libs.junit
     testCompile libs.truth

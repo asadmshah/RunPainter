@@ -8,12 +8,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.asadmshah.runpainter.R;
+import com.asadmshah.runpainter.RunPainterApplication;
+import com.asadmshah.runpainter.injection.ComponentFactory;
+
+import javax.inject.Inject;
 
 public class OldRunScreenFragment extends Fragment implements OldRunScreenContract.View {
+
+    @Inject OldRunScreenContract.Presenter presenter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ComponentFactory.create(RunPainterApplication.getComponent(getActivity()), this).inject(this);
     }
 
     @Nullable

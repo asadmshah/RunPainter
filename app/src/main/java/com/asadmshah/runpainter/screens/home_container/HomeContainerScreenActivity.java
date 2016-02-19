@@ -4,13 +4,21 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.asadmshah.runpainter.R;
+import com.asadmshah.runpainter.RunPainterApplication;
+import com.asadmshah.runpainter.injection.ComponentFactory;
+
+import javax.inject.Inject;
 
 public class HomeContainerScreenActivity extends AppCompatActivity implements HomeContainerScreenContract.View {
+
+    @Inject HomeContainerScreenContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_container);
+
+        ComponentFactory.create(RunPainterApplication.getComponent(this), this).inject(this);
     }
 
 }
