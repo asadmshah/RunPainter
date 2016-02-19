@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.asadmshah.runpainter">
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.asadmshah.runpainter"
+    >
 
     <application
         android:allowBackup="true"
@@ -9,15 +11,38 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:fullBackupContent="true"
+        android:name=".RunPainterApplication"
         >
 
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".screens.home_container.HomeContainerScreenActivity"
+            android:launchMode="singleTask"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".screens.new_run_container.NewRunContainerScreenActivity"
+            android:launchMode="singleTask"
+            android:parentActivityName=".screens.home_container.HomeContainerScreenActivity"
+            />
+
+        <activity
+            android:name=".screens.old_run_container.OldRunContainerScreenActivity"
+            android:launchMode="singleTask"
+            android:parentActivityName=".screens.home_container.HomeContainerScreenActivity"
+            />
+
+        <activity
+            android:name=".screens.settings_container.SettingsContainerScreenActivity"
+            android:launchMode="singleTask"
+            />
+
+        <service android:name=".services.current_run.CurrentRunService" />
 
         <provider
             android:authorities="${databaseProviderAuthority}"

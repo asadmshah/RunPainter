@@ -96,8 +96,9 @@ ext {
 }
 
 ext.libs = [
-        appcompat:          'com.android.support:appcompat-v7:23.1.1',
+        supportAppcompat:   'com.android.support:appcompat-v7:23.1.1',
         supportAnnotations: 'com.android.support:support-annotations:23.1.1',
+        supportDesign:      'com.android.support:design:23.1.1',
         autoparcel:         'com.github.frankiesardo:auto-parcel:0.3.1',
         autoparcelProcessor:'com.github.frankiesardo:auto-parcel-processor:0.3.1',
         junit:              'junit:junit:4.12',

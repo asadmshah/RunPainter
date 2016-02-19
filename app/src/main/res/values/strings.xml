@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RunPainter</string>
+    <string name="navigate_up">Navigate Up</string>
 </resources>
