@@ -31,12 +31,11 @@ before_script:
 
 script:
   - ./gradlew clean
-  - ./gradlew assemble -PdisablePreDex -q
   - ./gradlew check
   - ./gradlew connectedCheck
 
 after_success:
-  - ./gradlew app:coveralls
+  - bash <(curl -s https://codecov.io/bash)
 
 cache:
   directories:
