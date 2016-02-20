@@ -68,6 +68,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile     libs.supportAppcompat
+    compile     libs.supportPreference
     compile     libs.supportAnnotations
     compile     libs.supportDesign
     compile     libs.autoparcel
@@ -78,6 +79,7 @@ dependencies {
 
     testCompile libs.junit
     testCompile libs.truth
+    testCompile libs.mockito
 
     androidTestCompile libs.supportAnnotations
     androidTestCompile libs.junit

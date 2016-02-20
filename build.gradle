@@ -103,6 +103,7 @@ ext {
 
 ext.libs = [
         supportAppcompat:   'com.android.support:appcompat-v7:23.1.1',
+        supportPreference:  'com.android.support:preference-v14:23.1.1',
         supportAnnotations: 'com.android.support:support-annotations:23.1.1',
         supportDesign:      'com.android.support:design:23.1.1',
         autoparcel:         'com.github.frankiesardo:auto-parcel:0.3.1',
@@ -113,4 +114,5 @@ ext.libs = [
         junit:              'junit:junit:4.12',
         truth:              'com.google.truth:truth:0.28',
         testRules:          'com.android.support.test:rules:0.4.1',
+        mockito:            'org.mockito:mockito-all:1.10.19',
 ]

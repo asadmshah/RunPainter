@@ -1,5 +1,9 @@
 package com.asadmshah.runpainter.screens.settings_container;
 
+import android.support.annotation.Nullable;
+
+import com.asadmshah.runpainter.utils.Bundler;
+
 import javax.inject.Inject;
 
 public class SettingsContainerScreenPresenter implements SettingsContainerScreenContract.Presenter {
@@ -9,5 +13,12 @@ public class SettingsContainerScreenPresenter implements SettingsContainerScreen
     @Inject
     public SettingsContainerScreenPresenter(SettingsContainerScreenContract.View view) {
         this.view = view;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundler bundler) {
+        if (bundler == null) {
+            view.showSettingsScreen();
+        }
     }
 }
