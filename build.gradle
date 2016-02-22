@@ -114,5 +114,9 @@ ext.libs = [
         junit:              'junit:junit:4.12',
         truth:              'com.google.truth:truth:0.28',
         testRules:          'com.android.support.test:rules:0.4.1',
+        testRunner:         'com.android.support.test:runner:0.4.1',
+        espressoCore:       'com.android.support.test.espresso:espresso-core:2.2.1',
+        espressoContrib:    'com.android.support.test.espresso:espresso-contrib:2.2.1',
+        espressoIdlingRes:  'com.android.support.test.espresso:espresso-idling-resource:2.2.1',
         mockito:            'org.mockito:mockito-all:1.10.19',
 ]
