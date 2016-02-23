@@ -83,6 +83,9 @@ dependencies {
     compile     libs.dagger
     apt         libs.daggerCompiler
     provided    libs.jsr250
+    compile     libs.rxJava
+    compile     libs.rxAndroid
+    compile     libs.sqlBrite
 
     testCompile libs.junit
     testCompile libs.truth
