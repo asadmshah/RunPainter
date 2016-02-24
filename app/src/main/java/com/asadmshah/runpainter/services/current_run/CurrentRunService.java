@@ -6,7 +6,7 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 
 import com.asadmshah.runpainter.RunPainterApplication;
-import com.asadmshah.runpainter.injection.ComponentFactory;
+import com.asadmshah.runpainter.injection.factories.CurrentRunServiceComponentFactory;
 
 import javax.inject.Inject;
 
@@ -18,7 +18,7 @@ public class CurrentRunService extends Service implements CurrentRunContract.Ser
     public void onCreate() {
         super.onCreate();
 
-        ComponentFactory.create(RunPainterApplication.getComponent(this), this).inject(this);
+        CurrentRunServiceComponentFactory.create(RunPainterApplication.getComponent(this), this).inject(this);
     }
 
     @Override

@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.asadmshah.runpainter.R;
 import com.asadmshah.runpainter.RunPainterApplication;
-import com.asadmshah.runpainter.injection.ComponentFactory;
+import com.asadmshah.runpainter.injection.factories.OldRunContainerScreenComponentFactory;
 import com.asadmshah.runpainter.screens.old_run.OldRunScreenFragment;
 import com.asadmshah.runpainter.utils.BundlerImpl;
 
@@ -20,7 +20,7 @@ public class OldRunContainerScreenActivity extends AppCompatActivity implements 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_old_run_container);
 
-        ComponentFactory.create(RunPainterApplication.getComponent(this), this).inject(this);
+        OldRunContainerScreenComponentFactory.create(RunPainterApplication.getComponent(this), this).inject(this);
 
         presenter.onCreate(savedInstanceState == null ? null : new BundlerImpl(savedInstanceState));
     }

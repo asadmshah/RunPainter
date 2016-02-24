@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.preference.PreferenceFragmentCompat;
 
 import com.asadmshah.runpainter.RunPainterApplication;
-import com.asadmshah.runpainter.injection.ComponentFactory;
+import com.asadmshah.runpainter.injection.factories.SettingsScreenComponentFactory;
 
 import javax.inject.Inject;
 
@@ -16,7 +16,7 @@ public class SettingsScreenFragment extends PreferenceFragmentCompat implements 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ComponentFactory.create(RunPainterApplication.getComponent(getActivity()), this).inject(this);
+        SettingsScreenComponentFactory.create(RunPainterApplication.getComponent(getActivity()), this).inject(this);
     }
 
     @Override

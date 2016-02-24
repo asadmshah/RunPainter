@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import com.asadmshah.runpainter.R;
 import com.asadmshah.runpainter.RunPainterApplication;
-import com.asadmshah.runpainter.injection.ComponentFactory;
+import com.asadmshah.runpainter.injection.factories.RunsListScreenComponentFactory;
 
 import javax.inject.Inject;
 
@@ -21,7 +21,7 @@ public class RunsListScreenFragment extends Fragment implements RunsListScreenCo
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ComponentFactory.create(RunPainterApplication.getComponent(getActivity()), this).inject(this);
+        RunsListScreenComponentFactory.create(RunPainterApplication.getComponent(getActivity()), this).inject(this);
     }
 
     @Nullable

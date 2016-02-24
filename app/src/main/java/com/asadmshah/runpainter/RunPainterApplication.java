@@ -3,8 +3,8 @@ package com.asadmshah.runpainter;
 import android.app.Application;
 import android.content.Context;
 
-import com.asadmshah.runpainter.injection.ComponentFactory;
 import com.asadmshah.runpainter.injection.components.ApplicationComponent;
+import com.asadmshah.runpainter.injection.factories.ApplicationComponentFactory;
 
 public class RunPainterApplication extends Application {
 
@@ -13,7 +13,7 @@ public class RunPainterApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        applicationComponent = ComponentFactory.create(this);
+        applicationComponent = ApplicationComponentFactory.create(this);
     }
 
     public static ApplicationComponent getComponent(Context context) {

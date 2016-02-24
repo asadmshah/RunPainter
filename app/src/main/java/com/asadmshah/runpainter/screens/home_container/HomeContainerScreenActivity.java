@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.asadmshah.runpainter.R;
 import com.asadmshah.runpainter.RunPainterApplication;
-import com.asadmshah.runpainter.injection.ComponentFactory;
+import com.asadmshah.runpainter.injection.factories.HomeContainerScreenComponentFactory;
 import com.asadmshah.runpainter.screens.runs_list.RunsListScreenFragment;
 import com.asadmshah.runpainter.utils.BundlerImpl;
 
@@ -20,7 +20,7 @@ public class HomeContainerScreenActivity extends AppCompatActivity implements Ho
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_container);
 
-        ComponentFactory.create(RunPainterApplication.getComponent(this), this).inject(this);
+        HomeContainerScreenComponentFactory.create(RunPainterApplication.getComponent(this), this).inject(this);
 
         presenter.onCreate(savedInstanceState == null ? null : new BundlerImpl(savedInstanceState));
     }
