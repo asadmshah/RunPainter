@@ -78,6 +78,7 @@ dependencies {
     compile     libs.supportPreference
     compile     libs.supportAnnotations
     compile     libs.supportDesign
+    compile     libs.googleLocation
     compile     libs.autoparcel
     apt         libs.autoparcelProcessor
     compile     libs.dagger
@@ -86,6 +87,7 @@ dependencies {
     compile     libs.rxJava
     compile     libs.rxAndroid
     compile     libs.sqlBrite
+    compile     libs.timber
 
     testCompile libs.junit
     testCompile libs.truth
