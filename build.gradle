@@ -119,6 +119,7 @@ ext.libs = [
         rxAndroid:          'io.reactivex:rxandroid:1.1.0',
         sqlBrite:           'com.squareup.sqlbrite:sqlbrite:0.6.0',
         timber:             'com.jakewharton.timber:timber:4.1.1',
+        eventbus:           'org.greenrobot:eventbus:3.0.0',
         junit:              'junit:junit:4.12',
         truth:              'com.google.truth:truth:0.28',
         testRules:          'com.android.support.test:rules:0.4.1',

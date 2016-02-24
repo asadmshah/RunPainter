@@ -5,6 +5,7 @@ import com.asadmshah.runpainter.injection.components.ApplicationComponent;
 import com.asadmshah.runpainter.injection.components.DaggerApplicationComponent;
 import com.asadmshah.runpainter.injection.modules.ApplicationModule;
 import com.asadmshah.runpainter.injection.modules.DatabaseModule;
+import com.asadmshah.runpainter.injection.modules.GlobalEventBusModule;
 import com.asadmshah.runpainter.injection.modules.LocationProviderModule;
 
 public class ApplicationComponentFactory {
@@ -18,6 +19,7 @@ public class ApplicationComponentFactory {
                 .applicationModule(new ApplicationModule(application))
                 .databaseModule(new DatabaseModule())
                 .locationProviderModule(new LocationProviderModule())
+                .globalEventBusModule(new GlobalEventBusModule())
                 .build();
     }
 }
